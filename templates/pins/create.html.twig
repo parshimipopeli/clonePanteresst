@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block title 'new pin' %}
+
+{% block body %}
+
+{# length methode pour donner le nombre de pins #}
+<h1>Creation de pin</h1>
+
+{{ form_start(formCreate) }}
+
+
+    {{ form_widget(formCreate)}}
+    <input type="submit" value="creation de pin">
+
+
+{{ form_end(formCreate) }}
+
+    
+
+
+
+{% endblock %}

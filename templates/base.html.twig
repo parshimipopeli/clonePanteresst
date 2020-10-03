@@ -6,6 +6,13 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+
+    <nav>
+        <ul>
+            <li><a href="{{ path('app_home')}}">Acceuil</a></li>
+            <li><a href="{{ path('app_pins_create')}}">nouveau pin</a></li>
+        </ul>
+    </nav>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
