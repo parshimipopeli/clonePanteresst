@@ -9,15 +9,9 @@
 {# length methode pour donner le nombre de pins #}
 <h1>Creation de pin</h1>
 
-{{ form_start(formCreate) }}
 
-
-    {{ form_widget(formCreate)}}
-    <input type="submit" value="creation de pin">
-
-
-{{ form_end(formCreate) }}
-
+{# create form with include partial _form.html.twig #}
+    {{ include('pins/_form.html.twig', {submitButtonText: 'Créer d un pin'}) }}
     
 
 
