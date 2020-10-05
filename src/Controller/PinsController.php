@@ -33,10 +33,11 @@ class PinsController extends AbstractController
 {
 
     $pin = new Pin;
+
+    // create form whith form/PinType
     $form = $this->createForm(PinType::class, $pin);
         
         
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -47,12 +48,10 @@ class PinsController extends AbstractController
             # code...
         }
 
-    
         return $this->render('pins/create.html.twig', [
             'formCreate' => $form->createView()
 
         ]);
-
 
     }
 
@@ -68,12 +67,14 @@ return $this->render('pins/show.html.twig', compact('pin'));
     }
 
     /**
-     * @Route("/pins/{id}/edit", name="app_pins_edit", methods="GET|POST")
+     * @Route("/pins/{id}/edit", name="app_pins_edit", methods="GET|PUT")
      */
 
     public function edit(Request $request, EntityManagerInterface $em, Pin $pin): Response
     {
-        $form = $this->createForm(PinType::class, $pin);
+        $form = $this->createForm(PinType::class, $pin, [
+            'method' => 'PUT'
+        ]);
             
 
         $form->handleRequest($request);
