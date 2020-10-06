@@ -37,12 +37,15 @@ class PinsController extends AbstractController
     // create form whith form/PinType
     $form = $this->createForm(PinType::class, $pin);
         
-        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($pin);
             $em->flush();
+
+            $this->addFlash('success', 'pin creé avec succes!');
+
+        // dd($form->getData());
 
             return $this->redirectToRoute('app_home');
             # code...
@@ -82,6 +85,9 @@ return $this->render('pins/show.html.twig', compact('pin'));
             if ($form->isSubmitted() && $form->isValid()) {
                 $em->flush();
 
+                            $this->addFlash('success', 'pin mofifié avec succes!');
+
+
             return $this->redirectToRoute('app_home');
             # code...
 
@@ -104,7 +110,11 @@ public function delete(Request $request, Pin $pin, EntityManagerInterface $em): 
     if ($this->isCsrfTokenValid('pin_deletion_'. $pin->getId(), $request->request->get('csrf_token'))) {
         $em->remove($pin);
         $em->flush();
+
+                    $this->addFlash('info', 'pin supprimé avec succes!');
+
     }
+
 
 
 
