@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/base.html.twig' %}
 
 
 
@@ -10,11 +10,10 @@
         <h1>{{ pin.title }}</h1>
         <p>{{ pin.description }}</p>
     </article>
+    
 
     <a href="{{ path('app_pins_edit', {id: pin.id}) }}">Modifier</a>|
-    <a href="#" onclick="event.preventDefault();confirm('Etes vous sûr de vouloir supprimer??') && document.getElementById('js-pin-delete-form').submit()">Supprimer</a>|
-    <a href="{{ path('app_home') }}">Go back</a>
-
+    <a href="#" onclick="event.preventDefault();confirm('Etes vous sûr de vouloir supprimer??') && document.getElementById('js-pin-delete-form').submit()">Supprimer</a>
 <form id="js-pin-delete-form" action="{{ path('app_pins_delete', {id: pin.id}) }}" method="POST" style="display: none">
 <input type="hidden"name="csrf_token" value="{{ csrf_token('pin_deletion_'~pin.id) }}">
     <input type="hidden" name="_method" value="DELETE">

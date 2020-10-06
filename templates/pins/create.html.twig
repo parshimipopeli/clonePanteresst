@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'layouts/base.html.twig' %}
 
 
 
@@ -6,13 +6,21 @@
 
 {% block body %}
 
-{# length methode pour donner le nombre de pins #}
-<h1>Creation de pin</h1>
+<div class="row">
+    <div class="col-md-6 mx-auto">
+
+   {# length methode pour donner le nombre de pins #}
+<h1 class="text-center">Creation de pin</h1>
 
 
 {# create form with include partial _form.html.twig #}
     {{ include('pins/_form.html.twig', {submitButtonText: 'Créer d un pin'}) }}
     
+
+    </div>
+</div>
+
+
 
 
 
