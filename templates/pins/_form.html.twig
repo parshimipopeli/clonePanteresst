@@ -6,7 +6,7 @@
 
 
     {{ form_widget(form)}}
-    <input type="submit" value="{{ submitButtonText }}".formnovalidate>
+    <input type="submit" value="{{ submitButtonText }}" formnovalidate>  {#formnovalidate pour empecher la validaton formulaire html #}
 
 
 {{ form_end(form) }}
