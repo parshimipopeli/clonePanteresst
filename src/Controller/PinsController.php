@@ -18,25 +18,24 @@ class PinsController extends AbstractController
      */
     public function index(PinRepository $pinRepository): Response
     {
-
         $pins = $pinRepository->findBy([], ['createdAt' => 'DESC']);
 
-
-        return $this->render('pins/index.html.twig', compact('pins')) ;
+        return $this->render('pins/index.html.twig', compact('pins'));
     }
 
     /**
      * @route("/pins/create", name="app_pins_create", methods="GET|POST")
      */
 
-    public function create(Request $request, EntityManagerInterface $em): Response
-{
+    public function create(
+        Request $request,
+        EntityManagerInterface $em
+    ): Response {
+        $pin = new Pin();
 
-    $pin = new Pin;
+        // create form whith form/PinType
+        $form = $this->createForm(PinType::class, $pin);
 
-    // create form whith form/PinType
-    $form = $this->createForm(PinType::class, $pin);
-        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -45,82 +44,75 @@ class PinsController extends AbstractController
 
             $this->addFlash('success', 'pin creé avec succes!');
 
-        // dd($form->getData());
+            // dd($form->getData());
 
             return $this->redirectToRoute('app_home');
             # code...
         }
 
         return $this->render('pins/create.html.twig', [
-            'form' => $form->createView()
-
+            'form' => $form->createView(),
         ]);
-
     }
-
 
     /**
      * @Route("/pins/{id}", name="app_pins_show", methods="GET")
      */
     public function show(Pin $pin): Response
     {
-        
-return $this->render('pins/show.html.twig', compact('pin'));
-
+        return $this->render('pins/show.html.twig', compact('pin'));
     }
 
     /**
      * @Route("/pins/{id}<[0-9]+>/edit", name="app_pins_edit", methods="GET|PUT")
      */
 
-    public function edit(Request $request, EntityManagerInterface $em, Pin $pin): Response
-    {
+    public function edit(
+        Request $request,
+        EntityManagerInterface $em,
+        Pin $pin
+    ): Response {
         $form = $this->createForm(PinType::class, $pin, [
-            'method' => 'PUT'
+            'method' => 'PUT',
         ]);
-            
 
         $form->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid()) {
-                $em->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
 
-                            $this->addFlash('success', 'pin mofifié avec succes!');
-
+            $this->addFlash('success', 'pin mofifié avec succes!');
 
             return $this->redirectToRoute('app_home');
             # code...
-
+        }
+        return $this->render('pins/edit.html.twig', [
+            'pin' => $pin,
+            'form' => $form->createView(),
+        ]);
     }
-            return $this->render('pins/edit.html.twig', [
-                'pin' => $pin,
-                'form' => $form->createView()
-            ]);
-    }
 
-
-
- /**
+    /**
      * @route("/pins/{id<[0-9]+>}/delete", name="app_pins_delete", methods="DELETE")
      */
 
-public function delete(Request $request, Pin $pin, EntityManagerInterface $em): Response
-{
+    public function delete(
+        Request $request,
+        Pin $pin,
+        EntityManagerInterface $em
+    ): Response {
+        if (
+            $this->isCsrfTokenValid(
+                'pin_deletion_' . $pin->getId(),
+                $request->request->get('csrf_token')
+            )
+        ) {
+            $em->remove($pin);
+            $em->flush();
 
-    if ($this->isCsrfTokenValid('pin_deletion_'. $pin->getId(), $request->request->get('csrf_token'))) {
-        $em->remove($pin);
-        $em->flush();
+            $this->addFlash('info', 'pin supprimé avec succes!');
+        }
 
-                    $this->addFlash('info', 'pin supprimé avec succes!');
-
+        return $this->redirectToRoute('app_home');
     }
-
-
-
-
-            return $this->redirectToRoute('app_home');
-
-}
-
-
 }
