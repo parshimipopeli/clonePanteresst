@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Pin;
+use Symfony\Component\DomCrawler\Image;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -22,7 +23,10 @@ class PinType extends AbstractType
                 'allow_delete' => true,
                 'delete_label' => 'Supprimer',
                 'download_uri' => false,
-            ]);
+                'imagine_pattern' => 'squared_thumbnail_medium',
+                
+            ])
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
