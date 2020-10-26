@@ -14,9 +14,6 @@ class PinType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
-            ->add('title')
-            ->add('description')
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Image (JPG ou PNG)',
                 'required' => false,
@@ -24,9 +21,9 @@ class PinType extends AbstractType
                 'delete_label' => 'Supprimer',
                 'download_uri' => false,
                 'imagine_pattern' => 'squared_thumbnail_medium',
-                
-                
             ])
+            ->add('title')
+            ->add('description')
             ;
     }
 
