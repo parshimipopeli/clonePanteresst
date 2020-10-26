@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+
 /**
  * @ORM\Entity(repositoryClass=PinRepository::class)
  * @ORM\Table(name="pins")
@@ -46,7 +47,7 @@ class Pin
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
      * @Vich\UploadableField(mapping="pin_image", fileNameProperty="imageName")
-     * @Assert\Image(maxSize="8M")
+     * @Assert\Image(maxSize = "8M")
      *
      * @var File|null
      */

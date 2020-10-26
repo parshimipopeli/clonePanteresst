@@ -12,21 +12,22 @@
 
 
 		{% for row in pins|batch(3) %}
-			<div class="row mb-16">
+			<div class="row mb-5">
 				{% for pin in row %}
 					<div class="col-md-4">
 						<article class="pin bg-white rounded shadow-lg">
 							<div class="mw-100 overflow-hidden">
 								<a href="{{ path('app_pins_show', {id: pin.id}) }}">
-									<img class="w-100 rounded-top" src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('images/default.jpg')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ pin.title }}"/>
+									<img class="w-100 rounded-top" src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/images/default.jpg')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ pin.title }}"/>
 								</a>
 							</div>
-							<h2 class="text-center">
-								{{ pin.title}}
+							<h2 class="pl-3 pt-3 text-muted ">
+								<a href="{{ path('app_pins_show', {id: pin.id}) }}" class="text-muted text-decoration-none text-secondary">{{ pin.title}}</a>
+
 							</h2>
 							{# <p class="text-justify">{{ pin.description | striptags | slice(0, 30) | raw}}
-								...</p> #}
-							<p class="text-center">Pin crée il y à
+																						...</p> #}
+							<p class="pl-3 text-muted">Pin crée il y à
 								{{ pin.createdAt|ago}}</p>
 						</article>
 					</div>
