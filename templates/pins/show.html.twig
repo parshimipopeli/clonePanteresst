@@ -9,37 +9,25 @@
 		<div class="col-md-6 mx-auto">
 			<article class="pin bg-white rounded shadow-lg">
 				<div class="mw-100 rounded-top overflow-hidden">
-
-
 					<img class="w-100 " src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/images/default.jpg')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ pin.title }}"/>
-
-
 				</div>
-				<h2 class="pl-3 pt-3 text-muted ">
+				<h1 class="pl-3 pt-3 text-muted ">
 					{{ pin.title}}
-
-				</h2>
+				</h1>
 				<p class="pl-3 pb-3">{{ pin.description | striptags | slice(0, 30) | raw}}
 					...</p>
 				<p class="pl-3 text-muted">
 					<small>Pin crée le
 						{{ pin.createdAt|date('Y-m-d H:i:s')}}</small>
-
 				</p>
-
 				<div class="pl-3 pb-3">
-
 					<a href="{{ path('app_pins_edit', {id: pin.id}) }}" class="btn btn-light">Modifier</a>
 					<a href="#" onclick="event.preventDefault();confirm('Etes vous sûr de vouloir supprimer??') && document.getElementById('js-pin-delete-form').submit()" class="btn btn-light">Supprimer</a>
 					<form id="js-pin-delete-form" action="{{ path('app_pins_delete', {id: pin.id}) }}" method="POST" style="display: none">
 						<input type="hidden" name="csrf_token" value="{{ csrf_token('pin_deletion_'~pin.id) }}">
 						<input type="hidden" name="_method" value="DELETE">
 					</form>
-
-
 				</div>
-
-
 			</article>
 
 
