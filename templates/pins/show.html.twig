@@ -8,11 +8,10 @@
 	<div class="row">
 		<div class="col-md-6 mx-auto">
 			<article class="pin bg-white rounded shadow-lg">
-				<div class="mw-100 overflow-hidden">
-
-<img class="w-100 rounded-top" src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/images/default.jpg')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ pin.title }}"/>
+				<div class="mw-100 rounded-top overflow-hidden">
 
 
+					<img class="w-100 " src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/images/default.jpg')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ pin.title }}"/>
 
 
 				</div>

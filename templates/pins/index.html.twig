@@ -16,9 +16,10 @@
 				{% for pin in row %}
 					<div class="col-md-4">
 						<article class="pin bg-white rounded shadow-lg">
-							<div class="mw-100 overflow-hidden">
+							<div class="mw-100 rounded-top overflow-hidden">
+
 								<a href="{{ path('app_pins_show', {id: pin.id}) }}">
-<img class="w-100 rounded-top" src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/images/default.jpg')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ pin.title }}"/>
+									<img class="w-100 " src="{{ (pin.imageName ? vich_uploader_asset(pin) : asset('build/images/default.jpg')) | imagine_filter('squared_thumbnail_medium') }}" alt="{{ pin.title }}"/>
 
 
 								</a>
@@ -28,9 +29,12 @@
 
 							</h2>
 							{# <p class="text-justify">{{ pin.description | striptags | slice(0, 30) | raw}}
-																						...</p> #}
-							<p class="pl-3 text-muted">Pin crée il y à
-								{{ pin.createdAt|ago}}</p>
+																																			...</p> #}
+							<p class="pl-3 text-muted">
+								<small>Pin crée le
+									{{ pin.createdAt|date('Y-m-d à H:i:s')}}</small>
+							</p>
+
 						</article>
 					</div>
 				{% endfor %}
