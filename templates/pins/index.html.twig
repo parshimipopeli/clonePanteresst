@@ -31,7 +31,7 @@
 							{# <p class="text-justify">{{ pin.description | striptags | slice(0, 30) | raw}}
 																																			...</p> #}
 							<p class="pl-3 text-muted">
-								<small>Pin crée le
+								<small>Pin crée par {{ pin.user.fullName }} le
 									{{ pin.createdAt|date('Y-m-d à H:i:s')}}</small>
 							</p>
 
