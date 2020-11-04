@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-5">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-5 sticky-top">
 	<div class="container">
 		<a class="navbar-brand" href="{{ path('app_home')}}">Pantersest</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,7 +19,7 @@
 					</li>
           {% else %}
 					<li class="nav-item">
-						<a class="nav-link" href="#">Register</a>
+						<a class="nav-link" href="{{ path('app_register') }}">Register</a>
 					</li>
 
 					<li class="nav-item">

@@ -5,7 +5,9 @@
 {% block body %}
 	<div class="row">
 		<div class="col-md-6 mx-auto">
-			<h1 class="text-center mt-5">Veuillez vous connecter</h1>
+			<h1 class="text-center mt-5">
+				Veuillez vous connecter
+			</h1>
 
 			<form method="post" action="">
 				{% if error %}
@@ -17,19 +19,26 @@
 				{% if app.user %}
 					<div class="mb-3">
 						You are logged in as
-						{{ app.user.username }},
-						<a href="{{ path('app_logout') }}">Logout</a>
+						{{ app.user.username }}
+						,
+						<a href="{{ path('app_logout') }}">
+							Logout
+						</a>
 					</div>
 				{% endif %}
 
 
 				<div class="form-group">
-					<label for="email">Email</label>
+					<label for="email">
+						Email
+					</label>
 					<input type="email" value="{{ last_username }}" name="email" id="email" class="form-control" required autofocus>
 				</div>
 
 				<div class="form-group">
-					<label for="password">Mot de passe</label>
+					<label for="password">
+						Mot de passe
+					</label>
 					<input type="password" name="password" id="password" class="form-control" required>
 				</div>
 
@@ -39,24 +48,31 @@
 					<div class="form-group">
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" name="_remember_me" id="remember_me">
-							<label class="form-check-label" for="remember_me">Se souvenir de moi</label>
+							<label class="form-check-label" for="remember_me">
+								Se souvenir de moi
+							</label>
 						</div>
 
 					</div>
-					<a href="#">mot de passe oublié?</a>
+					<a href="#">
+						mot de passe oublié?
+					</a>
 				</div>
 
 				<button class="btn btn-lg btn-block btn-primary mt-4" type="submit">
 					S'identifier
 				</button>
-				<p class="pt-5 text-center text-muted">Vous n'avez pas encore de compte?<a href="#">Créer votre compte!</a>
+				<p class="pt-5 text-center text-muted">
+					Vous n'avez pas encore de compte?
+					<a href="{{ path('app_register') }}">
+						Créer votre compte!
+					</a>
 				</p>
-			</form>
 
+			</p>
+		</form>
 
-		</div>
 
 	</div>
 
-
-{% endblock %}
+</div>{% endblock %}
