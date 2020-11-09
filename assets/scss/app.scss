@@ -42,3 +42,10 @@ body {
     transform: scale(1.075);
   }
 }
+
+.scroll-text {
+  min-height: auto;
+  max-height: 60vh;
+      overflow: auto;
+
+  }
