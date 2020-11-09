@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -28,6 +29,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank(message="Ce champs ne peut pas être nul!")
+     * @Assert\Email(message="Veuillez entrer une adresse email valide!")
      */
     private $email;
 
@@ -44,16 +47,19 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Ce champs ne peut pas être nul!")
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Ce champs ne peut pas être nul!")
      */
     private $lastName;
 
     /**
      * @ORM\OneToMany(targetEntity=Pin::class, mappedBy="user", orphanRemoval=true)
+     * @Assert\NotBlank(message="Ce champs ne peut pas être nul!")
      */
     private $pins;
 
