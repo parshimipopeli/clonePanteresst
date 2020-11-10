@@ -19,10 +19,9 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Guard\PasswordAuthenticatedInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
-use Symfony\Component\Security\Guard\AuthenticatorInterface;
-
 
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
+
 {
     use TargetPathTrait;
 
@@ -75,7 +74,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Email ou mot de passe invalide!');
+            throw new CustomUserMessageAuthenticationException('Il n\'y a pas de compte avec cet email!!');
         }
 
         return $user;
@@ -99,7 +98,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
     {
 
-        $request->getSession()->getFlashBag()->add('success', 'Bonjour' . " " . $token->getUser()->getFullName());
+    $request->getSession()->getFlashBag()->add('success', 'Bonjour' . " " . $token->getUser()->getFullName());
+
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
