@@ -17,7 +17,7 @@ class PinsController extends AbstractController
     /**
      * @Route("/", name="app_home", methods="GET")
      */
-    public function index(REquest $request, PinRepository $pinRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request, PinRepository $pinRepository, PaginatorInterface $paginator): Response
     {
         $pins = $pinRepository->findBy([], ['createdAt' => 'DESC']);
 
