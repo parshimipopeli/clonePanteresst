@@ -21,14 +21,16 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#" onclick="event.preventDefault();
-						document.getElementById('js-logout-form').submit();">
+					{# Method with function twig  for the csrf token #}
+						<a class="nav-link" href="{{ logout_path('main') }}">
 							Logout
 						</a>
+{# 
+					method with getMethod
+						<a class="nav-link" href="{{ path('app_logout') }}?_csrf_token={{ csrf_token('logout') }}">
+							Logout
+						</a>  #}
 					</li>
-					<form id="js-logout-form" action="{{ path('app_logout') }}" method="POST" style="display: none;">
-						<input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
-					</form>
 				{% else %}
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('app_register') }}">

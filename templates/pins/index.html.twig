@@ -7,7 +7,9 @@
 	{% if pins|length > 0 %}
 
 		{# length methode pour donner le nombre de pins #}
-		<h1 class="mb-4 text-center text-info">{{ pluralize(pins|length, 'pin' )}}</h1>
+		<h1 class="mb-4 text-center text-info">
+			{{ pluralize(pins|length, 'pin' )}}
+		</h1>
 
 		{% for row in pins|batch(3) %}
 			<div class="row mb-5">
@@ -22,14 +24,20 @@
 								</a>
 							</div>
 							<h2 class="pl-3 pt-3 text-muted ">
-								<a href="{{ path('app_pins_show', {id: pin.id}) }}" class="text-muted text-decoration-none text-secondary">{{ pin.title}}</a>
+								<a href="{{ path('app_pins_show', {id: pin.id}) }}" class="text-muted text-decoration-none text-secondary">
+									{{ pin.title | slice(0, 20) }}
+								</a>
 
 							</h2>
 							{# <p class="text-justify">{{ pin.description | striptags | slice(0, 30) | raw}}
-																																			...</p> #}
+																																										...</p> #}
 							<p class="pl-3 text-muted">
-								<small>Pin crée par {{ pin.user.fullName }} le
-									{{ pin.createdAt|date('Y-m-d à H:i:s')}}</small>
+								<small>
+									Pin crée par
+									{{ pin.user.fullName }}
+									le
+									{{ pin.createdAt|date('Y-m-d à H:i:s')}}
+								</small>
 							</p>
 						</article>
 					</div>
@@ -37,9 +45,11 @@
 			</div>
 		{% endfor %}
 	{% else %}
-		<p class="h1 text-center ">Il n'y a aucun pin à afficher!
+		<p class="h1 text-center ">
+			Il n'y a aucun pin à afficher!
 			<a href="{{ path('app_pins_create') }}">
-				Soyez le premier à créer un pin!</a>
+				Soyez le premier à créer un pin!
+			</a>
 		</p>
 
 
