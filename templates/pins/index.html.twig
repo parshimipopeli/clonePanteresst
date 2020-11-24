@@ -44,6 +44,9 @@
 				{% endfor %}
 			</div>
 		{% endfor %}
+		{{ knp_pagination_render(pins) }}
+
+
 	{% else %}
 		<p class="h1 text-center ">
 			Il n'y a aucun pin à afficher!
