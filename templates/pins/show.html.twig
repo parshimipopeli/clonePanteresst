@@ -5,6 +5,7 @@
 
 {% block body %}
 
+
 	<div class="row">
 		<div class="col-md-6 mx-auto">
 			<article class="pin bg-white rounded shadow-lg">
@@ -15,19 +16,34 @@
 					<h1 class="text-muted ">
 						{{ pin.title}}
 					</h1>
-					<div class="scroll-text">
-					<p class="pt-3 text-break">{{ pin.description }}
-					</p>
-					</div>
+					<details>
+						<summary class="text-center bg-secondary">
+							Voir l'article
+						</summary>
+
+						<div class="scroll-text">
+							<p class="pt-3 text-break">
+								{{ pin.description }}
+							</p>
+						</div>
+					</details>
+
+
 					<p class="text-muted">
-						<small>Pin crée par
+						<small>
+							Pin crée par
 							{{ pin.user.fullName }}
 							le
-							{{ pin.createdAt|date('Y-m-d H:i:s')}}</small>
+							{{ pin.createdAt|date('Y-m-d H:i:s')}}
+						</small>
 					</p>
 					<div class="pt-3">
-						<a href="{{ path('app_pins_edit', {id: pin.id}) }}" class="btn btn-light">Modifier</a>
-						<a href="#" onclick="event.preventDefault();confirm('Etes vous sûr de vouloir supprimer??') && document.getElementById('js-pin-delete-form').submit()" class="btn btn-light">Supprimer</a>
+						<a href="{{ path('app_pins_edit', {id: pin.id}) }}" class="btn btn-light">
+							Modifier
+						</a>
+						<a href="#" onclick="event.preventDefault();confirm('Etes vous sûr de vouloir supprimer??') && document.getElementById('js-pin-delete-form').submit()" class="btn btn-light">
+							Supprimer
+						</a>
 						<form id="js-pin-delete-form" action="{{ path('app_pins_delete', {id: pin.id}) }}" method="POST" style="display: none">
 							<input type="hidden" name="csrf_token" value="{{ csrf_token('pin_deletion_'~pin.id) }}">
 							<input type="hidden" name="_method" value="DELETE">
@@ -40,6 +56,5 @@
 		</div>
 
 	</div>
-
 
 {% endblock %}
